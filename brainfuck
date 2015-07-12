@@ -31,6 +31,6 @@ for x in xrange(0, len(instructions)):
     elif instructions[x] == "<":
         cell -= 1
     elif instructions[x] == ".":
-        print tape[cell]
+        print chr(tape[cell])
     else:
         pass
