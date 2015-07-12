@@ -43,6 +43,6 @@ for x in xrange(0, len(code)):
     elif code[x] == "<":
         cell -= 1
     elif code[x] == ".":
-        print chr(tape[cell])
+        sys.stdout.write(chr(tape[cell]))
     else:
         pass
