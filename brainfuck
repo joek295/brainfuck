@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+
+# A brainfuck interpreter, written in python
+
+# brainfuck is an esoteric programming language with a limited set of
+# instructions.  These are:
+# . output cell value
+# , read value to cell
+# > move pointer to next cell
+# < move pointer to previous cell
+# [ if the value of the current cell is zero, goto matching ]
+# ] if the value of the current cell is non-zero, goto matching  [
+# + increment value of cell at pointer
+# - decrement value of cell at pointer
+
+# Brainfuck works on a tape of a theoretically infinite (in practice,
+# usually 30,000) number of cells.
+
+tape = [0 for x in xrange(0,30000)]
+cell = 0
+# instructions: cell +=65; print cell.  Outputs "A"
+instructions = "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++."
+
+for x in xrange(0, len(instructions)):
+    if instructions[x] == "+":
+        tape[cell] += 1
+    elif instructions[x] == "-":
+        tape[cell] -= 1
+    elif instructions[x] == ">":
+        cell +=1
+    elif instructions[x] == "<":
+        cell -= 1
+    elif instructions[x] == ".":
+        print tape[cell]
+    else:
+        pass
