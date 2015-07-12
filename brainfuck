@@ -20,6 +20,7 @@ import sys
 
 if len(sys.argv) == 1:
     print "ERROR: Expected an argument."
+    sys.exit(1)
 else:
     source = sys.argv[1]
     try:
