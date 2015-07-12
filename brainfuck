@@ -23,11 +23,11 @@ if len(sys.argv) == 1:
 else:
     source = sys.argv[1]
     try:
-        f = open(source,r)
+        f = open(source,"r")
         code = f.read()
         f.close()
     except IOError:
-        code = sys.arvg[1]
+        code = sys.argv[1]
 
 tape = [0 for x in xrange(0,30000)]
 cell = 0
