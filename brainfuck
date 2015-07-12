@@ -22,22 +22,26 @@ if len(sys.argv) == 1:
     print "ERROR: Expected an argument."
 else:
     source = sys.argv[1]
+    try:
+        f = open(source,r)
+        code = f.read()
+        f.close()
+    except IOError:
+        code = sys.arvg[1]
 
 tape = [0 for x in xrange(0,30000)]
 cell = 0
-# instructions: cell +=65; print cell.  Outputs "A"
-instructions = "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++."
 
-for x in xrange(0, len(instructions)):
-    if instructions[x] == "+":
+for x in xrange(0, len(code)):
+    if code[x] == "+":
         tape[cell] += 1
-    elif instructions[x] == "-":
+    elif code[x] == "-":
         tape[cell] -= 1
-    elif instructions[x] == ">":
+    elif code[x] == ">":
         cell +=1
-    elif instructions[x] == "<":
+    elif code[x] == "<":
         cell -= 1
-    elif instructions[x] == ".":
+    elif code[x] == ".":
         print chr(tape[cell])
     else:
         pass
