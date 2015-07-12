@@ -16,6 +16,13 @@
 # Brainfuck works on a tape of a theoretically infinite (in practice,
 # usually 30,000) number of cells.
 
+import sys
+
+if len(sys.argv) == 1:
+    print "ERROR: Expected an argument."
+else:
+    source = sys.argv[1]
+
 tape = [0 for x in xrange(0,30000)]
 cell = 0
 # instructions: cell +=65; print cell.  Outputs "A"
