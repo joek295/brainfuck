@@ -11,9 +11,8 @@ except IndexError:
     sys.exit(1)
     
 try:
-    f = open(source,"r")
-    code = f.read()
-    f.close()
+    with open(source,"r") as srcfile:
+        code = srcfile.read()
 except IOError:
     code = sys.argv[1]
 
