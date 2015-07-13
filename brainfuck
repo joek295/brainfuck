@@ -37,21 +37,15 @@ x = 0
 while x < len(code):
     if code[x] == "+":
         tape[cell] += 1
-        x += 1
     elif code[x] == "-":
         tape[cell] -= 1
-        x += 1
     elif code[x] == ">":
         cell +=1
-        x += 1
     elif code[x] == "<":
         cell -= 1
-        x += 1
     elif code[x] == ".":
         sys.stdout.write(chr(tape[cell]))
-        x += 1
     elif code[x] == "[":
-        x += 1
         if tape[cell] == 0:
             looplevel = 1
             while looplevel > 0:
@@ -61,9 +55,7 @@ while x < len(code):
                 elif code[x] == "]":
                     looplevel -= 1
     elif code[x] == "]":
-        if tape[cell] == 0:
-            x += 1
-        else:
+        if tape[cell] != 0:
             looplevel = 1
             while looplevel > 0:
                 x -= 1
@@ -73,4 +65,4 @@ while x < len(code):
                     looplevel += 1
     else:
         pass
-        x += 1
+    x += 1
