@@ -4,17 +4,18 @@
 
 import sys
 
-if len(sys.argv) == 1:
-    print "ERROR: Expected an argument."
-    sys.exit(1)
-else:
+try:
     source = sys.argv[1]
-    try:
-        f = open(source,"r")
-        code = f.read()
-        f.close()
-    except IOError:
-        code = sys.argv[1]
+except IndexError:
+    print "Fatal Error: Brainfuck expected a source file."
+    sys.exit(1)
+    
+try:
+    f = open(source,"r")
+    code = f.read()
+    f.close()
+except IOError:
+    code = sys.argv[1]
 
 # Brainfuck's tape is theoretically infinite; in this case, it is a
 # 30,000-cell loop
@@ -54,8 +55,12 @@ while instruction < len(code):
     elif code[instruction] == ".":
         sys.stdout.write(chr(tape[cell]))
     elif code[instruction] == ",":
-        if inputcell < len(input):
-            tape[cell] = ord(input[inputcell])
+        try:
+            if inputcell < len(input):
+                tape[cell] = ord(input[inputcell])
+        except TypeError:
+            print "Fatal Error: " + sys.argv[1] + " expected input."
+            sys.exit(1)
         inputcell += 1
     else:
         pass
