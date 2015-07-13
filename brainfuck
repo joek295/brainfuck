@@ -33,16 +33,44 @@ else:
 tape = [0 for x in xrange(0,30000)]
 cell = 0
 
-for x in xrange(0, len(code)):
+x = 0
+while x < len(code):
     if code[x] == "+":
         tape[cell] += 1
+        x += 1
     elif code[x] == "-":
         tape[cell] -= 1
+        x += 1
     elif code[x] == ">":
         cell +=1
+        x += 1
     elif code[x] == "<":
         cell -= 1
+        x += 1
     elif code[x] == ".":
         sys.stdout.write(chr(tape[cell]))
+        x += 1
+    elif code[x] == "[":
+        x += 1
+        if tape[cell] == 0:
+            looplevel = 1
+            while looplevel > 0:
+                x += 1
+                if code[x] == "[":
+                    looplevel += 1
+                elif code[x] == "]":
+                    looplevel -= 1
+    elif code[x] == "]":
+        if tape[cell] == 0:
+            x += 1
+        else:
+            looplevel = 1
+            while looplevel > 0:
+                x -= 1
+                if code[x] == "[":
+                    looplevel -= 1
+                elif code[x] == "]":
+                    looplevel += 1
     else:
         pass
+        x += 1
