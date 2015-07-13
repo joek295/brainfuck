@@ -77,3 +77,9 @@ dynamically increasing the size of the array when this occurs.
 
 * If no input is given and program tries to read input, ask for input
   on stdin.
+
+# UNLICENCE:
+
+The code for the brainfuck interpreter is [Unlicensed](unlicense.org)
+and released into the public domain.  The Unlicense text can be found
+in the UNLICENSE file.
