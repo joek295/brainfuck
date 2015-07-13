@@ -23,40 +23,40 @@ cell = 0; inputcell = 0
 if len(sys.argv) > 2:
     input = sys.argv[2]
 
-x = 0
-while x < len(code):
-    if code[x] == "+":
+instruction = 0
+while instruction < len(code):
+    if code[instruction] == "+":
         tape[cell] += 1
-    elif code[x] == "-":
+    elif code[instruction] == "-":
         tape[cell] -= 1
-    elif code[x] == ">":
+    elif code[instruction] == ">":
         cell +=1
-    elif code[x] == "<":
+    elif code[instruction] == "<":
         cell -= 1
-    elif code[x] == "[":
+    elif code[instruction] == "[":
         if tape[cell] == 0:
             looplevel = 1
             while looplevel > 0:
-                x += 1
-                if code[x] == "[":
+                instruction += 1
+                if code[instruction] == "[":
                     looplevel += 1
-                elif code[x] == "]":
+                elif code[instruction] == "]":
                     looplevel -= 1
-    elif code[x] == "]":
+    elif code[instruction] == "]":
         if tape[cell] != 0:
             looplevel = 1
             while looplevel > 0:
-                x -= 1
-                if code[x] == "[":
+                instruction -= 1
+                if code[instruction] == "[":
                     looplevel -= 1
-                elif code[x] == "]":
+                elif code[instruction] == "]":
                     looplevel += 1
-    elif code[x] == ".":
+    elif code[instruction] == ".":
         sys.stdout.write(chr(tape[cell]))
-    elif code[x] == ",":
+    elif code[instruction] == ",":
         if inputcell < len(input):
             tape[cell] = ord(input[inputcell])
         inputcell += 1
     else:
         pass
-    x += 1
+    instruction += 1
