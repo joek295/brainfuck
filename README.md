@@ -1,32 +1,24 @@
 # The Brainfuck Progamming Language:
 
-Brainfuck is an esoteric programming language with a limited
-instruction set of eight discrete instructions, each represented as a
-single character.  Brainfuck instructions operate on a (theoretically)
-infinitely long tape, consisting of cells which hold an integer value
-of (again theoretically) any size.
+[Brainfuck](en.wikipedia.org/wiki/Brainfuck) is an esoteric
+programming language with a limited instruction set of eight discrete
+instructions, each represented as a single character.  Brainfuck
+instructions operate on a (theoretically) infinitely long tape,
+consisting of cells which hold an integer value of (again
+theoretically) any size.
 
 These instructions are:
 
-* increment the value of the cell under the pointer (+)
-
-* decrement the value of the cell under the pointer (-)
-
-* move the pointer one cell to the right (>)
-
-* move the pointer one cell to the left (<)
-
-* output the value of the cell under the pointer as an ASCII character
-  (.)
-
-* read a single byte of input, and store its value in the cell under
-  the pointer (,)
-
-* if the cell under the pointer has a value of zero, jump forward in
-  the instructions to the matching ] ([)
-
-* if the cell under the pointer does not have a value of zero, jump
-  backwards in the instructions to the matching [ (])
+Instruction | Effect
+--------------------
+`+`         | increment the value of the cell under the pointer
+`-`         | decrement the value of the cell under the pointer
+`>`         | move the pointer one cell to the right
+`<`         | move the pointer one cell to the left
+`.`         | output the value of the cell under the pointer
+`,`         | read in a single byte of input and store its value in the cell under the pointer
+`[`         | if the cell under the pointer has a value of zero, jump to the matching ]
+`]`         | if the cell under the pointer is non-zero, jump to the matching [
 
 Despite this, brainfuck is a Turing-complete language, which means that given
 enough time and computing power, it can do anything that any other
@@ -73,7 +65,7 @@ How brainfuck deals with reading an End-of-File indicator with , is
 not defined, and varies between implementations.  This version leaves
 cells unchanged.
 
-# Planned Features:
+## Planned Features:
 
 * Dynamic resizing of tape if the pointer moves beyond the 30,000th
   cell.
@@ -90,6 +82,7 @@ cells unchanged.
 
 # UNLICENCE:
 
-The code for the brainfuck interpreter is [Unlicensed](unlicense.org)
-and released into the public domain.  The Unlicense text can be found
-in the UNLICENSE file.
+The code for the brainfuck interpreter, all brainfuck sourcecode, and
+my other brainfuck tools are [Unlicensed](unlicense.org) and released
+into the public domain.  The Unlicense text can be found in the
+UNLICENSE file.
