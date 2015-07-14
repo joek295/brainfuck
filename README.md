@@ -9,16 +9,16 @@ theoretically) any size.
 
 These instructions are:
 
-Instruction | Effect
---------------------
-`+`         | increment the value of the cell under the pointer
-`-`         | decrement the value of the cell under the pointer
-`>`         | move the pointer one cell to the right
-`<`         | move the pointer one cell to the left
-`.`         | output the value of the cell under the pointer
-`,`         | read in a single byte of input and store its value in the cell under the pointer
-`[`         | if the cell under the pointer has a value of zero, jump to the matching ]
-`]`         | if the cell under the pointer is non-zero, jump to the matching [
+|Instruction | Effect|
+|--------------------|
+|`+`         | increment the value of the cell under the pointer|
+|`-`         | decrement the value of the cell under the pointer|
+|`>`         | move the pointer one cell to the right|
+|`<`         | move the pointer one cell to the left|
+|`.`         | output the value of the cell under the pointer|
+|`,`         | read in a single byte of input and store its value in the cell under the pointer|
+|`[`         | if the cell under the pointer has a value of zero, jump to the matching ]|
+|`]`         | if the cell under the pointer is non-zero, jump to the matching [|
 
 Despite this, brainfuck is a Turing-complete language, which means that given
 enough time and computing power, it can do anything that any other
