@@ -27,7 +27,11 @@ except IOError:
 tape = [0 for x in xrange(0,30000)]
 cell = 0; inputcell = 0
 if len(sys.argv) > 2:
-    input = sys.argv[2]
+    try:
+        with open(sys.argv[2],"r") as inputfile:
+            input = inputfile.read()
+    except IOError:
+        input = sys.argv[2]
 
 instruction = 0
 while instruction < len(code):
