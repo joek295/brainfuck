@@ -10,7 +10,7 @@ theoretically) any size.
 These instructions are:
 
 |Instruction | Effect|
-|--------------------|
+|------------|-------|
 |`+`         | increment the value of the cell under the pointer|
 |`-`         | decrement the value of the cell under the pointer|
 |`>`         | move the pointer one cell to the right|
