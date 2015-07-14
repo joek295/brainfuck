@@ -78,6 +78,8 @@ dynamically increasing the size of the array when this occurs.
 * If no input is given and program tries to read input, ask for input
   on stdin.
 
+* Warnings for unmatched [ and ]
+
 # UNLICENCE:
 
 The code for the brainfuck interpreter is [Unlicensed](unlicense.org)
