@@ -67,7 +67,13 @@ When moving the pointer out of the tape to the right, behaviour is
 undefined and there may be bugs.  Eventually, I plan to implement
 dynamically increasing the size of the array when this occurs.
 
-## Planned Features:
+## EOF:
+
+How brainfuck deals with reading an End-of-File indicator with , is
+not defined, and varies between implementations.  This version leaves
+cells unchanged.
+
+# Planned Features:
 
 * Dynamic resizing of tape if the pointer moves beyond the 30,000th
   cell.
@@ -79,6 +85,8 @@ dynamically increasing the size of the array when this occurs.
   on stdin.
 
 * Warnings for unmatched [ and ]
+
+* Code pre-processing for some optimization
 
 # UNLICENCE:
 
