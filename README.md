@@ -80,6 +80,12 @@ cells unchanged.
 
 * Code pre-processing for some optimization
 
+# src/
+
+As well as the brainfuck interpreter, this repository contains
+brainfuck source code, in the src/ folder.  The extension .bf is
+conventionally used to denote a brainfuck source file.
+
 # UNLICENCE:
 
 The code for the brainfuck interpreter, all brainfuck sourcecode, and
