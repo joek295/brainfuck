@@ -86,6 +86,23 @@ As well as the brainfuck interpreter, this repository contains
 brainfuck source code, in the src/ folder.  The extension .bf is
 conventionally used to denote a brainfuck source file.
 
+# tools/
+
+Tools for writing brainfuck are in the tools directory.
+
+bfify.py takes input text, and outputs brainfuck code which prints
+that text.  The code it outputs is reasonably compact: standard
+English above c. 100 bytes tends to be turned into brainfuck less than
+10 times larger than the original input.  For example, the text of the
+Edgar Allen Poe poem *The Raven*, which is 7050 bytes in the version I
+have, is converted into <55,000bytes of brainfuck, while the text of
+*If* by Rudyard Kipling (1489 bytes) becomes just under 14,000 bytes
+of brainfuck.
+
+asciify.py takes input text and outputs the ASCII control codes, in
+decimal, for that text.  This is useful for writing brainfuck to
+output text by hand.
+
 # UNLICENCE:
 
 The code for the brainfuck interpreter, all brainfuck sourcecode, and
