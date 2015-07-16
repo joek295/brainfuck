@@ -61,7 +61,7 @@ dynamically increasing the size of the array when this occurs.
 
 ## EOF:
 
-How brainfuck deals with reading an End-of-File indicator with , is
+How brainfuck deals with reading an End-of-File indicator with `,` is
 not defined, and varies between implementations.  This version leaves
 cells unchanged.
 
