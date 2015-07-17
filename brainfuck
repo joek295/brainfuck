@@ -33,6 +33,16 @@ if len(sys.argv) > 2:
     except IOError:
         input = sys.argv[2]
 
+def bracket_check(source):
+    openbnum = source.count("[")
+    closebnum = source.count("]")
+    if openbnum < closebnum:
+        print "Warning: unmatched ]"
+    elif openbnum > closebnum:
+        print "Warning: unmatched ["
+
+bracket_check(source) 
+
 instruction = 0
 while instruction < len(code):
     if code[instruction] == "+":
