@@ -40,7 +40,7 @@ hours of coding time.
 
 Because brainfuck is an underspecified language, there are various
 design decisions that have to be made when writing an interpreter or a
-compiler.
+compiler.  Some of these are discussed below:
 
 ## Cell Size:
 
@@ -75,8 +75,6 @@ cells unchanged.
 
 * If no input is given and program tries to read input, ask for input
   on stdin.
-
-* Warnings for unmatched [ and ]
 
 * Code pre-processing for some optimization
 
