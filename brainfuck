@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-# An interpreter for the Brainfuck programming language.
+# Brainfuck interpreter, written in python.
+# Slowly gaining features at the expense of performance.
 
 # Author: Joe Kitchen
 # This code is UNLICENSED.  The terms of the unlicense might have been
@@ -8,24 +9,39 @@
 # UNLICENSE file.  If not, the text of the unlicense, as well as more
 # information about it, can be found at unlicense.org.
 
+'''brainfuck interpreter by Joe Kitchen
+
+Usage: brainfuck SOURCE 
+       brainfuck SOURCE INPUT
+
+Global settings:
+
+TAPESIZE controls the length of the tape.  The standard setting is
+30,000, though well-behaved brainfuck programs should try not to use
+more than 9,999 cells for the benefit of people playing compiler golf.
+
+EOF controls the interpreter's behaviour when reading EOF as input.
+-1 and 0 mean that the interpreter will set the cell to -1 or 0
+respectively; all other values mean that the interpreter will not
+change the cell value.
+'''
+
 import sys
 
+TAPESIZE = 30000
+EOF = 1
+
 try:
-    source = sys.argv[1]
-except IndexError:
-    print "Fatal Error: Brainfuck expected a source file."
-    sys.exit(1)
-    
-try:
-    with open(source,"r") as srcfile:
+    with open(sys.argv[1],"r") as srcfile:
         code = srcfile.read()
 except IOError:
     code = sys.argv[1]
+except IndexError:
+    print "Fatal Error: Brainfuck expected a source file."
+    sys.exit(1)
 
-# Brainfuck's tape is theoretically infinite; in this case, it is a
-# 30,000-cell loop
-tape = [0 for x in xrange(0,30000)]
-cell = 0; inputcell = 0
+tape = [0]*TAPESIZE
+cell = inputcell = instruction = 0
 if len(sys.argv) > 2:
     try:
         with open(sys.argv[2],"r") as inputfile:
@@ -33,26 +49,51 @@ if len(sys.argv) > 2:
     except IOError:
         input = sys.argv[2]
 
+# Currently bracket_check() only checks that the number of [ and ] in
+# the source are equal, not whether or not they are actually matched.
 def bracket_check(source):
     openbnum = source.count("[")
     closebnum = source.count("]")
-    if openbnum < closebnum:
-        print "Warning: unmatched ]"
-    elif openbnum > closebnum:
-        print "Warning: unmatched ["
+    if openbnum != closebnum:
+        if openbnum < closebnum:
+            print "Warning: unmatched ]"
+        else:
+            print "Warning: unmatched ["
 
-bracket_check(source) 
+bracket_check(code) 
 
-instruction = 0
+def movehead(x):
+    global cell
+    if (cell + x) in xrange(0,TAPESIZE):
+        cell += x
+    else:
+        print "Tape Error: head cannot move past tape boundaries."
+        sys.exit(1)
+
+def readinput():
+    global inputcell
+    global tape
+    try:
+        if inputcell < len(input):
+            tape[cell] = ord(input[inputcell])
+    except TypeError:
+        if EOF == 0 or EOF == -1:
+            tape[cell] = EOF
+        else:
+            pass
+    inputcell += 1
+
 while instruction < len(code):
     if code[instruction] == "+":
         tape[cell] += 1
     elif code[instruction] == "-":
         tape[cell] -= 1
     elif code[instruction] == ">":
-        cell +=1
+        cell += 1
+        #movehead(1)
     elif code[instruction] == "<":
-        cell -= 1
+        cell -=1
+        #movehead(-1)
     elif code[instruction] == "[":
         if tape[cell] == 0:
             looplevel = 1
@@ -74,13 +115,7 @@ while instruction < len(code):
     elif code[instruction] == ".":
         sys.stdout.write(chr(tape[cell]))
     elif code[instruction] == ",":
-        try:
-            if inputcell < len(input):
-                tape[cell] = ord(input[inputcell])
-        except TypeError:
-            print "Fatal Error: " + sys.argv[1] + " expected input."
-            sys.exit(1)
-        inputcell += 1
+        readinput()
     else:
         pass
     instruction += 1
